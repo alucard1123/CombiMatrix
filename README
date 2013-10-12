@@ -1,0 +1,8 @@
+#This is a MBT based project
+#funcationlly,this have some base test methord below:
+#BoundaryValues
+#EquivalenceClass
+#OrthogonalDecomposition
+#RandomMatrix
+#and will have a language I call it XTL which means XML test Language
+#can describe some base test mind
