@@ -10,7 +10,6 @@ import java.util.Random;
  */
 public class main {
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
 
         String[][] arr = { { "test", "run", "mark"},
                 { "A","B","C","D","E"},

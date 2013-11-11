@@ -9,7 +9,7 @@ public class Stack {
     private Object[] elements;
     private int size = 0;
     private int AddSize =0;
-                      Stack(int initalSize){
+    Stack(int initalSize){
         elements = new Object[initalSize];
     }
     public Stack(int initalSize,int AddSize){
@@ -27,6 +27,8 @@ public class Stack {
             else {
                 newLength = (int)(elements.length * 1.5);
             }
+            elements = new Object[newLength];
+            System.arraycopy(_elemnts,0,elements,0,size);
         }
     }
     public void push(Object object){
@@ -40,7 +42,7 @@ public class Stack {
         return elements[--size];
     }
     public int size(){
-        return size;
+        return snize;
     }
 
 }
