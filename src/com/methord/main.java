@@ -1,6 +1,6 @@
 package com.methord;
 
-import controler.ScanInput;
+import com.controler.ScanInput;
 
 /**
  * User: edward
@@ -9,7 +9,7 @@ import controler.ScanInput;
  */
 public class main {
     public static void main(String[] args){
-        String testStr = "[!(char)3] and [(num)3]";
+        String testStr = "![(char)3\"(char)3\"]\"[cde]\" and [(num)3] and [test]";
         ScanInput si = new ScanInput(testStr);
 
 

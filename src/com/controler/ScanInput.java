@@ -1,7 +1,8 @@
-package controler;
+package com.controler;
 
 import com.stack.Stack;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,15 +19,20 @@ public class ScanInput {
 
     public ScanInput(String input) {
         this.Input = input;
-        SolveTranslation();
-        SolveNot();
+        //SolveCondition();
+        //SolveNot();
+        //SolveAnd();
+        SovlveTranslation();
     }
 
-    private void SolveTranslation() {
-
-        Pattern pt = Pattern.compile("\\[(.*?)\\]");
+    private void SolveCondition() {
+        //positive way (?<!")\[(.*?)\](?<!")
+        //negative way (?<!")!\[(.*?)\](?<!")
+        //using this positive way:
+        Pattern pt = Pattern.compile("(?<!\")\\[(.*?)\\](?<!\")");
+        //another greedy matching will be \[([^}]+)\]
         Matcher ma = pt.matcher(Input);
-       if(ma.find()) {
+       while(ma.find()) {
             if(ma.groupCount()>0){
                 System.out.println(ma.group(1));
             }
@@ -34,15 +40,36 @@ public class ScanInput {
 
     }
     private void SolveAnd(){
+        Pattern pt = Pattern.compile("and");
+        String[] testStr = pt.split(Input);
+        for(int i=0;i<testStr.length;i++){
+            this.Input = testStr[i];
+            System.out.println("Translation:"+testStr[i]);
+            SolveCondition();
+        }
+        //System.out.println(Arrays.toString(testStr));
 
     }
+    private void MoveNot(){
 
+    }
     private void SolveNot() {
-        for (int i = 0; i < Input.length(); i++) {
-            if (Input.charAt(i) == '!') {
 
-            }
+    }
+    // translate \" into phrase
+    private void SovlveTranslation(){
+        String[] Undone = new String[20];
+        int Cursor=0;
+        Pattern pt = Pattern.compile("\"(.*?)\"");
+        Matcher matcher = pt.matcher(Input);
+        while(matcher.find()){
+            Undone[Cursor++] = matcher.group(1);
+            System.out.println(Undone[Cursor]);
+            matcher.replaceAll("CCC");
+
         }
+        System.out.println(Input);
+
     }
     public String GetInput(){
         return this.output;
