@@ -14,15 +14,16 @@ import java.util.regex.Pattern;
 public class ScanInput {
 
     private String Input;
-    private String output;
+    private String[] output;
     Stack stack = new Stack(20);
+    String[] Undone = new String[20];
 
     public ScanInput(String input) {
         this.Input = input;
         //SolveCondition();
-        //SolveNot();
         //SolveAnd();
-        SovlveTranslation();
+        SolveTranslation();
+        SolveNot();
     }
 
     private void SolveCondition() {
@@ -54,24 +55,45 @@ public class ScanInput {
 
     }
     private void SolveNot() {
+        Pattern pt = Pattern.compile("(?<!\")!\\[(.*?)\\](?<!\")");
+        //Pattern pt = Pattern.compile("\\(char\\)\\d{1,}");
+        Matcher ma = pt.matcher(Input);
+        //find conditions with NOT
+        while (ma.find()){
+            String FindedStr = ma.group(1);
+            //get (char)
+            Pattern pt1 = Pattern.compile("\\(char\\)");
+            Matcher ma1 = pt1.matcher(FindedStr);
+            while (ma1.find()){
+                String Finded = ma.group();
+                System.out.println(Finded);
+                String[] test = Finded.split("\\(char\\)");
+                System.out.println(test[1]);
+            }
+            /*
+            pt = Pattern.compile("(?<!\\()char(?<!\\))\\d");
+            ma = pt.matcher(Input);
+            while (ma.find()){
+                System.out.println(ma.group());
+            }
+            */
+        }
 
     }
     // translate \" into phrase
-    private void SovlveTranslation(){
-        String[] Undone = new String[20];
+    private void SolveTranslation(){
+
         int Cursor=0;
         Pattern pt = Pattern.compile("\"(.*?)\"");
         Matcher matcher = pt.matcher(Input);
         while(matcher.find()){
-            Undone[Cursor++] = matcher.group(1);
-            System.out.println(Undone[Cursor]);
-            matcher.replaceAll("CCC");
-
+            this.Undone[Cursor++] = matcher.group();
+            //System.out.println(Undone[Cursor-1]);
         }
-        System.out.println(Input);
-
+        Input = matcher.replaceAll("CCC");
     }
-    public String GetInput(){
+    public String[] GetInput(){
         return this.output;
     }
+    
 }

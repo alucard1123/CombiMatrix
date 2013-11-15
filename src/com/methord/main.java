@@ -9,7 +9,7 @@ import com.controler.ScanInput;
  */
 public class main {
     public static void main(String[] args){
-        String testStr = "![(char)3\"(char)3\"]\"[cde]\" and [(num)3] and [test]";
+        String testStr = "![(char)223\"(char)3\"]\"[cde]\" and [(num)3] and [test]";
         ScanInput si = new ScanInput(testStr);
 
 
