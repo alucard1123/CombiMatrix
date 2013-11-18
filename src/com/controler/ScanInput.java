@@ -3,6 +3,7 @@ package com.controler;
 import com.stack.Stack;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,22 +62,31 @@ public class ScanInput {
         //find conditions with NOT
         while (ma.find()){
             String FindedStr = ma.group(1);
-            //get (char)
-            Pattern pt1 = Pattern.compile("\\(char\\)");
+            System.out.println(FindedStr);
+            //get (char) ----------------------------------
+            Pattern pt1 = Pattern.compile("\\(char\\)\\d{1,}");
+            //String[] test = pt1.split(FindedStr);
+            //System.out.println(Arrays.toString(test));
+
             Matcher ma1 = pt1.matcher(FindedStr);
             while (ma1.find()){
-                String Finded = ma.group();
-                System.out.println(Finded);
-                String[] test = Finded.split("\\(char\\)");
-                System.out.println(test[1]);
+                String Finded = ma1.group();
+                //System.out.println(Finded);
+                String[] FoundBar = Finded.split("\\(char\\)");
+                //System.out.println(FoundBar[1]);
+                //check if FoundBar has value
+                if(!FoundBar[1].isEmpty()){
+                    //set circle
+
+                }else {
+                    System.out.println("ERROR:\n" +
+                            "WRONG FORMANT:you probably forget add number after '(char)'");
+                    System.exit(100);
+                }
             }
-            /*
-            pt = Pattern.compile("(?<!\\()char(?<!\\))\\d");
-            ma = pt.matcher(Input);
-            while (ma.find()){
-                System.out.println(ma.group());
-            }
-            */
+
+
+            //----------------------------------------------
         }
 
     }
@@ -92,8 +102,26 @@ public class ScanInput {
         }
         Input = matcher.replaceAll("CCC");
     }
+    // Rand not char
+    private String _RandChar(int count){
+        String ReturnStr = null;
+        Random random = new Random();
+        int mark =0;
+        for (int i =0;i<count;i++){
+            mark = random.nextInt(2);
+            switch (mark){
+                //rand a number
+                case 0:
+                    mark = random.nextInt(9)+48;
+
+                    break;
+            }
+
+        }
+        return null;
+    }
     public String[] GetInput(){
         return this.output;
     }
-    
+
 }
