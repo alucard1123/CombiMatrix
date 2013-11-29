@@ -1,5 +1,6 @@
 package com.controler;
 
+import com.Generator.GenSub;
 import com.stack.Stack;
 
 import java.util.Arrays;
@@ -77,6 +78,12 @@ public class ScanInput {
                 //check if FoundBar has value
                 if(!FoundBar[1].isEmpty()){
                     //set circle
+                    int counter = Integer.parseInt(FoundBar[1]);
+                    String GenChar="";
+                    for(int i=0;i<counter;i++){
+                        GenChar += GenSub.GenChar();
+                    }
+                    System.out.println(GenChar);
 
                 }else {
                     System.out.println("ERROR:\n" +
